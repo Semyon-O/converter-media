@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Converter</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .jumbotron {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        input[type="file"] {
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand" href={% url 'audio_convert_view' %}>Конвертер Аудио</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand" href={% url 'video_convert_view' %}>Конвертер видео</a>
+            </div>
+              
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand" href={% url 'photo_convert_view' %}>Конвертер фото</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <button type="button" class="btn btn-outline-danger">Выйти</button>
+            </div>
+          </div>
+        </nav>
+        <div class="jumbotron">
+            <h1 class="display-4">Аудио Конвертер</h1>
+            <p class="lead">Быстро и легко сконвертируйте аудио файлы в различные форматы.</p>
+            <hr class="my-4">
+            <form action="{% url 'convert' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="videoFile">Выбрать файл:</label>
+                    <input type="file" class="form-control-file" id="videoFile" name="video_file">
+                </div>
+                <div class="form-group">
+                    <label for="outputFormat">Выбрать доступные форматы:</label>
+                    <select class="form-control" id="outputFormat" name="output_format">
+                        <option value="mp4"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Convert</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
